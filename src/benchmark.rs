@@ -2,18 +2,10 @@ use std::{str::FromStr, time::Instant};
 
 use crate::{board::Board, movegen::MoveGenerator};
 
+#[derive(Default)]
 pub struct Benchmark {
 	pub board: Board,
 	pub movegen: MoveGenerator,
-}
-
-impl Default for Benchmark {
-	fn default() -> Self {
-		Self {
-			board: Board::default(),
-			movegen: MoveGenerator::default(),
-		}
-	}
 }
 
 impl Benchmark {
@@ -65,25 +57,7 @@ impl Benchmark {
 			}
 		}
 
-		return nodes;
-	}
-
-	pub fn list_current_moves(&mut self) {
-		let list = self.movegen.generate_psuedo(&self.board);
-
-		let mut nodes = 0;
-
-		for i in 0..list.len() {
-			let m = list.get_move(i);
-
-			if self.board.make_psuedo_move(m, &self.movegen) {
-				self.board.unmake();
-				println!("{m}");
-				nodes += 1;
-			}
-		}
-
-		println!("\nNodes\t: {nodes}");
+		nodes
 	}
 
 	pub fn play_move(&mut self, value: &str) -> bool {

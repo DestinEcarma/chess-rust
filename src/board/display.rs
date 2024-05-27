@@ -1,11 +1,7 @@
 use std::fmt::Display;
 
 use crate::{
-	bitboard::Bitboards,
-	castle_right::CastleRights,
-	color::Colors,
-	piece::Pieces,
-	square::Squares,
+	bitboard::Bitboards, castle_right::CastleRights, color::Colors, piece::Pieces, square::Squares,
 };
 
 use super::Board;

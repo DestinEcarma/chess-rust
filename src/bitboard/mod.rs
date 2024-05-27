@@ -1,4 +1,3 @@
-mod line;
 mod miscs;
 
 use crate::square::Square;

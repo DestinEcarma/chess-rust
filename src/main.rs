@@ -1,7 +1,3 @@
-#![allow(dead_code, unused_variables, unused_imports, unused_mut)]
-
-use benchmark::Benchmark;
-use board::Board;
 use engine::Engine;
 
 mod benchmark;

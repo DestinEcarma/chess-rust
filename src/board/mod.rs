@@ -11,7 +11,6 @@ use self::defs::GameState;
 mod create;
 pub mod defs;
 mod display;
-pub mod evaluation;
 mod playmoves;
 
 pub struct Board {

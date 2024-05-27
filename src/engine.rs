@@ -1,10 +1,6 @@
 use std::io;
 
-use crate::{
-	benchmark::{self, Benchmark},
-	board::{self, Board},
-	square::{File, Rank},
-};
+use crate::benchmark::Benchmark;
 
 pub struct Engine;
 impl Engine {
@@ -34,7 +30,7 @@ impl Engine {
 				_ => println!("Invalid command!"),
 			}
 
-			println!("");
+			println!();
 		}
 	}
 }
@@ -74,28 +70,6 @@ impl Engine {
 		let castle_rights = tokens[3];
 		let en_passant = tokens[4];
 
-		let mut rank = 7 as Rank;
-		let mut file = 0 as File;
-
-		for ch in pieces.chars() {
-			match ch {
-				'/' => {
-					rank -= 1;
-					file = 0;
-				}
-				'1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' => {
-					file += ch.to_digit(10).unwrap() as File
-				}
-				'K' | 'P' | 'N' | 'B' | 'R' | 'Q' | 'k' | 'p' | 'n' | 'b' | 'r' | 'q' => {
-					file += 1;
-				}
-				_ => {
-					println!("Invalid argument, character not recognized, got: {ch}");
-					return;
-				}
-			}
-		}
-
 		match turn {
 			"W" | "w" | "B" | "b" => (),
 			_ => {
@@ -132,11 +106,7 @@ impl Engine {
 			}
 		}
 
-		benchmark.set_fen(
-			vec![pieces, turn, castle_rights, en_passant]
-				.join(" ")
-				.as_str(),
-		)
+		benchmark.set_fen([pieces, turn, castle_rights, en_passant].join(" ").as_str())
 	}
 
 	fn make_move(benchmark: &mut Benchmark, token: &str) {

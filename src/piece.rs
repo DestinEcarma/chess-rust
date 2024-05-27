@@ -16,8 +16,6 @@ impl Pieces {
 
 	pub const PROMOTIONAL: [Piece; 4] = [Self::QUEEN, Self::ROOK, Self::BISHOP, Self::KNIGHT];
 
-	pub const VALUES: [u16; Self::SIZE] = [0, 100, 320, 310, 500, 900];
-
 	pub fn from_char(value: char) -> Piece {
 		match value {
 			'K' | 'k' => Self::KING,
