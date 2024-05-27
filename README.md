@@ -19,9 +19,9 @@ cargo run
 There's really nothing else you can do here other than play against your self or do a perfromance test:
 
 ```
-perft <depth>		Example: perft 7
-move <move>			Example: move d2d3
-fen <fen string>	Example fen rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -
-undo				simply undo the move
-display				display the current board
+perft <depth>       Example: perft 7
+move <move>         Example: move d2d3
+fen <fen string>    Example fen rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -
+undo                simply undo the move
+display             display the current board
 ```
