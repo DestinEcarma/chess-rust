@@ -16,6 +16,12 @@ To start using the engine simply type this command:
 cargo run
 ```
 
+For a more performant run use:
+
+```
+cargo run --release
+```
+
 There's really nothing else you can do here other than play against your self or do a perfromance test:
 
 ```
