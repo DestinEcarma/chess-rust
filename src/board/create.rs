@@ -1,4 +1,3 @@
-use failure::Fail;
 use std::str::FromStr;
 
 use crate::{
@@ -13,10 +12,17 @@ use super::{defs::GameState, Board};
 
 const DEFAULT_FEN: &str = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-#[derive(Clone, Debug, Fail)]
+#[derive(Clone, Debug)]
 pub enum Error {
-	#[fail(display = "Invalid FEN string: {}", fen)]
-	InvalidFen { fen: String },
+	InvalidFen(String),
+}
+
+impl std::fmt::Display for Error {
+	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+		match self {
+			Error::InvalidFen(value) => write!(f, "Invalid FEN: {}", value),
+		}
+	}
 }
 
 impl Default for Board {
@@ -41,9 +47,7 @@ impl FromStr for Board {
 		let tokens: Vec<&str> = value.split(' ').collect();
 
 		if tokens.len() < 4 {
-			return Err(Error::InvalidFen {
-				fen: value.to_string(),
-			});
+			return Err(Error::InvalidFen(value.to_string()));
 		}
 
 		let pieces = tokens[0];
@@ -71,22 +75,14 @@ impl FromStr for Board {
 					board.add_piece(piece, color, sq);
 					file += 1;
 				}
-				_ => {
-					return Err(Error::InvalidFen {
-						fen: value.to_string(),
-					})
-				}
+				_ => return Err(Error::InvalidFen(value.to_string())),
 			}
 		}
 
 		match turn {
 			"W" | "w" => board.game_state.color = Colors::WHITE,
 			"B" | "b" => board.game_state.color = Colors::BLACK,
-			_ => {
-				return Err(Error::InvalidFen {
-					fen: value.to_string(),
-				})
-			}
+			_ => return Err(Error::InvalidFen(value.to_string())),
 		}
 
 		if castle_rights != "-" {

@@ -12,8 +12,6 @@ pub struct GameState {
 	pub castle_rights: CastleRight,
 	pub en_passant: Option<Square>,
 
-	pub material: [u16; Colors::SIZE],
-
 	pub next_move: Move,
 }
 
@@ -24,8 +22,6 @@ impl GameState {
 
 			castle_rights: CastleRights::NONE,
 			en_passant: None,
-
-			material: [0; Colors::SIZE],
 
 			next_move: Default::default(),
 		}

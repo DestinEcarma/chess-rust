@@ -8,7 +8,7 @@ mod psuedo;
 
 use crate::{bitboard::Bitboard, color::Colors, magic::Magic, square::Squares};
 
-#[cfg_attr(debug, derive(Debug))]
+#[cfg_attr(debug_assertions, derive(Debug))]
 pub struct MoveGenerator {
 	king: [Bitboard; Squares::SIZE],
 	pawn: [[Bitboard; Squares::SIZE]; Colors::SIZE],

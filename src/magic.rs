@@ -136,7 +136,7 @@ pub const BISHOP_MAGIC_NR: [NR; 64] = [
 	1229517884942849184,
 ];
 
-#[cfg_attr(debug, derive(Debug))]
+#[cfg_attr(debug_assertions, derive(Debug))]
 #[derive(Clone, Copy, Default)]
 pub struct Magic {
 	pub mask: Bitboard,

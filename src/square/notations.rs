@@ -72,7 +72,7 @@ impl Squares {
 	pub const H8: Square = 63;
 
 	// the purpose of this function is to initialize the constant Notations
-	#[cfg(debug)]
+	#[cfg(debug_assertions)]
 	pub fn _init_square_notations() {
 		for r in Self::RANKS {
 			for f in Self::FILES {
@@ -156,12 +156,10 @@ impl Squares {
 	}
 
 	// The purpose of this function is to initialize the from_notation function
-	#[cfg(debug)]
+	#[cfg(debug_assertions)]
 	pub fn _init_from_notation() {
 		for r in Self::RANKS {
 			for f in Self::FILES {
-				let sq = Self::from_rank_file(r, f);
-
 				let notation = format!("{}{}", FILES[f], r + 1);
 
 				println!(
@@ -243,12 +241,10 @@ impl Squares {
 	}
 
 	// The purpose of this function is to initialize the to_notation function
-	#[cfg(debug)]
+	#[cfg(debug_assertions)]
 	pub fn _init_to_notation() {
 		for r in Self::RANKS {
 			for f in Self::FILES {
-				let sq = Self::from_rank_file(r, f);
-
 				let notation = format!("{}{}", FILES[f], r + 1);
 
 				println!(

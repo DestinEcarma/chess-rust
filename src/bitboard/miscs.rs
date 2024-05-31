@@ -17,21 +17,4 @@ const fn _init_squares() -> [Bitboard; Squares::SIZE] {
 
 impl Bitboards {
 	pub const SQAURES: [Bitboard; Squares::SIZE] = _init_squares();
-
-	#[cfg(debug)]
-	pub fn print_indecies() {
-		let mut indecies = String::new();
-
-		for r in Squares::RANKS.rev() {
-			for f in Squares::FILES {
-				let sq = Squares::from_rank_file(r, f);
-
-				indecies += &format!(" {:02} ", sq);
-			}
-
-			indecies += "\n";
-		}
-
-		println!("{indecies}");
-	}
 }
