@@ -1,4 +1,4 @@
-use std::{str::FromStr, time::Instant};
+use std::str::FromStr;
 
 use crate::{board::Board, movegen::MoveGenerator};
 
@@ -13,9 +13,8 @@ impl Benchmark {
 		self.board = Board::from_str(fen).unwrap();
 	}
 
-	pub fn perft(&mut self, depth: usize) {
-		let now = Instant::now();
-
+	#[inline(always)]
+	pub fn perft(&mut self, depth: usize) -> usize {
 		let mut nodes = 0;
 
 		let list = self.movegen.generate_psuedo(&self.board);
@@ -32,12 +31,7 @@ impl Benchmark {
 			}
 		}
 
-		let elapsed = now.elapsed().as_millis() as f64;
-		let nodes_per_seconds = ((nodes * 1000) as f64 / elapsed).floor();
-
-		println!("\nTotal time (ms)\t: {:.0}", elapsed);
-		println!("Nodes searched\t: {nodes}");
-		println!("Nodes/second\t: {}", nodes_per_seconds);
+		nodes
 	}
 
 	#[inline(always)]

@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, time::Instant};
 
 use crate::benchmark::Benchmark;
 
@@ -56,7 +56,21 @@ impl Engine {
 			}
 		};
 
-		benchmark.perft(depth);
+		let start = Instant::now();
+		let nodes = benchmark.perft(depth);
+		let elapsed = start.elapsed().as_millis();
+
+		let nodes_per_seconds = match nodes.checked_div(match elapsed.checked_div(1000) {
+			Some(num) => num as usize,
+			None => 1,
+		}) {
+			Some(nodes) => nodes,
+			None => nodes,
+		};
+
+		println!("\nTotal Time (ms)\t: {elapsed}");
+		println!("Nodes searched\t: {nodes}");
+		println!("Nodes/second\t: {nodes_per_seconds}");
 	}
 
 	fn fen(benchmark: &mut Benchmark, tokens: Vec<&str>) {
